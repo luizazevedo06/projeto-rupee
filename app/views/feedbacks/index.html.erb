@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <h1>Feedbacks</h1>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2 col-xs-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>projetos</td>
+          <td>bug</td>
+          <td>solucao</td>
+          <td colspan="3">
+
+            <%= link_to 'Novo Projeto', new_feedback_path, class: 'btn btn-success' %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @feedbacks.empty? %>
+          <tr>
+            <td colspan="4" class="text-center">
+              <h3>Sem projetos cadastrados.</h3>
+              <%= link_to 'click aqui', new_feedback_path %> para cadastrar um novo contato
+            </td>
+          </tr>
+        <% end %>
+        <% @feedbacks.each do |c| %>
+        <tr>
+          <td>
+            <%= c.projeto %>
+          </td>
+          <td>
+            <%= c.bug %>
+          </td>
+          <td>
+            <%= c.solucao %>
+          </td>
+
+
+          <td>
+            <%= link_to 'Editar', edit_feedback_path(c), class: 'btn btn-warning' %>
+          </td>
+          <td>
+            <%= link_to 'Excluir', feedback_path(c), method: :delete, class: 'btn btn-danger', data: { confirm: 'Tem certeza que deseja excluir?' } %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
